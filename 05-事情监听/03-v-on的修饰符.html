@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+<!--    1. .stop修饰符的使用-->
+    <div @click="divClick">
+        aaaaaa
+        <button @click.stop="btnClick">按钮</button>
+    </div>
+
+<!--    2. .prevent修饰符的使用-->
+<!--    使用修饰符时，顺序很重要；相应的代码会以同样的顺序产生。因
+        此，用 v-on:click.prevent.self 会阻止所有的点击，而 v-on:click.self.prevent 只会
+        阻止对元素自身的点击。-->
+    <br>
+    <form action="baidu">
+        <input type="submit" value="提交" @click.prevent="submitClick">
+    </form>
+
+<!--    3. 监听某个键盘的键帽-->
+<!--    KeyDowm和KeyUp一个是键盘按下去和抬起来的监听-->
+    <input type="text" @keyup="keyUp">
+</div>
+<!--    4. .once修饰符的使用-->
+<button @click="btn2Click">按钮2</button>
+
+<script src="../js/vue.js"></script>
+<script>
+    const  app = new Vue({
+        el:'#app',
+        data: {
+            message:'你好啊啊啊'
+        },
+        methods: {
+            btnClick() {
+                console.log("btnClick");
+            },
+            divClick() {
+                console.log("divClick");
+            },
+            submitClick() {
+                console.log('submitClick');
+            },
+            keyUp() {
+                console.log('keyUp');
+            },
+            btn2Click() {
+                console.log('btn2Click');
+            },
+        }
+    })
+</script>
+</body>
+</html>

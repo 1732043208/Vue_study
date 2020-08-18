@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <h2>{{counter}}</h2>
+<!--    <button v-on:click="increment">+</button>-->
+<!--    <button v-on:click="decrement">-</button>-->
+<!--    事件监听的时候如果方法没有传入参数，那（）可以省略不写，写了也可以-->
+    <button @click="increment()">+</button>
+    <button @click="decrement">-</button>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el:'#app',
+        data: {
+            counter: 0
+        },
+        methods: {
+            increment(){
+                this.counter++
+            },
+            decrement(){
+                this.counter--
+            }
+        }
+    })
+</script>
+</body>
+</html>

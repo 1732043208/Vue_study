@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <cpn></cpn>
+    <cpn></cpn>
+    <cpn></cpn>
+</div>
+
+<template id="cpn">
+    <div>
+        <h2>当前计数: {{counter}}</h2>
+        <button @click="increment">+</button>
+        <button @click="decrement">-</button>
+    </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+    // 1.注册组件.组件的data里面必须是个函数
+    // 一:每次调用data会互相影响
+    // const obj = {
+    //     counter: 0
+    // }
+
+    // 二:每次调用data不会相互影响
+    Vue.component('cpn', {
+        template: '#cpn',
+        data() {
+            return {
+                counter: 0
+            }
+        },
+        // data(){
+        //     return obj
+        // },
+        methods: {
+            increment() {
+                this.counter++
+            },
+            decrement() {
+                this.counter--
+            },
+
+        }
+    })
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: '你好啊'
+        }
+    })
+</script>
+<!--总结：每一个组件实例都有属于自己的状态，都需要有一个对象去保存属于自己的状态-->
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li v-for="item in letters">{{item}}</li>
+    </ul>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el:'#app',
+        data: {
+            letters: ['a','b','c','d']
+        },
+        methods: {
+            btnClick(){
+                //1.push方法
+                //this.letters.push('aaa')
+                //this.letters.push('aaa','bbb','ccc')
+
+                //2.pop():删除数组中的最后一个元素
+                // this.letters.pop();
+
+                //3.shift():删除数组中的第一个元素
+                // this.letters.shift();
+
+                //4.unshift():在数组最前面添加元素
+                // this.letters.unshift()
+                this.letters.unshift('aaa','bbb','ccc')
+
+                //splice的作用:删除元素/插入元素/替换元素
+                //删除元素：第二个参数传入你要删除几个元素(如果没有传，就删除后面所有的元素)
+                //替换元素：第二个参数，表示我们要替换几个元素，后面是用于替换前面的元素
+                //插入元素: 第二个参数，传入0，并且后面跟上要插入的元素
+                //splice(start)
+                //splice(start)
+                // this.letters.splice(1,3,'m','n','l','x')   表示删除第一个元素后面的三个元素并插入mnlx四个新的元素
+                // this.letters.splice(1,0,'x','y','z')     表示从第一个元素后面插入新的xyz元素
+
+                //5.sort()
+                //this.letters.sort()
+
+                //6.reverse()
+                //this.letters.reverse()
+
+                //注意:通过索引值修改数组中的元素
+                //this.letters[0] = 'bbbbb';
+                // this.letters.splice(0,1,'bbbbbbb')
+                // set(要修改的对象，索引值，修改后的值)
+                Vue.set(this.letters,0,'bbbbbb')
+            }
+        }
+    })
+
+
+</script>
+</body>
+</html>

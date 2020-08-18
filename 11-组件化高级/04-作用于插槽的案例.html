@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <cpn></cpn>
+
+    <cpn>
+        <!--        目的是获取子组件中的pLanguages-->
+        <!--        旧的版本这里要求必须是一个template模板，但是现在新的版本写div或别的也行-->
+        <div slot-scope="hahaha">
+<!--            <span v-for="item in hahaha.suibianqi">{{item}}  ++  </span>-->
+            <span>{{hahaha.suibianqi.join(' ++ ')}}</span>
+        </div>
+    </cpn>
+
+    <cpn>
+        <div slot-scope="hahaha">
+            <span v-for="item in hahaha.suibianqi">{{item}}  **  </span>
+<!--            <span>{{hahaha.suibianqi.join(' ** ')}}</span>-->
+        </div>
+    </cpn>
+</div>
+
+<template id="cpn">
+    <div>
+        <slot :suibianqi="pLanguages">
+            <ul>
+                <li v-for="item in pLanguages">{{item}}</li>
+            </ul>
+        </slot>
+    </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: '你好啊'
+        },
+        components: {
+            cpn: {
+                template: '#cpn',
+                data() {
+                    return {
+                        pLanguages: ['JavaScript', 'C++', 'Java', 'C#', 'Python', 'Go', 'Swift']
+                    }
+
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

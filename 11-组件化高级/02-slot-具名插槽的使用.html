@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--1.插槽的基本使用 <slot></slot>-->
+<!--2.插槽的默认值<slot>button</slot>-->
+<!--2.如果有多个值，同时放入到组件进行替换时，一起作为替换元素-->
+
+<div id="app">
+<!--    如果这个span里面不写slot的话，他将自动替换没有名字的(默认值)-->
+    <cpn><span slot="center">标题</span></cpn>
+
+    <cpn><button slot="left">返回</button></cpn>
+</div>
+
+<template id="cpn">
+    <div>
+        <slot name="left"><span>左边</span></slot>
+        <slot name="center"><span>中间</span></slot>
+        <slot name="right"><span>右边</span></slot>
+
+<!--        他只会替换没有名字的，没写名字就是默认值-->
+        <slot></slot>
+    </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: '你好啊'
+        },
+        components: {
+            cpn: {
+                template: '#cpn'
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <h2>专辑总价格: {{totalPrice}} 元</h2>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data:{
+            zhuanji: [
+                {id: 1, name: '张国荣专辑', price:300},
+                {id: 2, name: 'Beyond专辑', price:350},
+                {id: 3, name: '张学友专辑', price:200},
+                {id: 4, name: '周慧敏专辑', price:260},
+                {id: 5, name: '刘德华专辑', price:190},
+            ]
+        },
+        computed: {
+            totalPrice: function () {
+                let dangqiantotal = 0
+
+                for (let i=0; i < this.zhuanji.length; i++){
+                   dangqiantotal += this.zhuanji[i].price
+               }
+               return dangqiantotal
+            }
+        }
+    })
+</script>
+</body>
+</html>

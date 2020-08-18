@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <cpn v-bind:cmovies="movies" :cmessage="message"></cpn>
+</div>
+
+
+<template id="cpn">
+    <div>
+        <h2>{{cmessage}}</h2>
+        <ul>
+            <li v-for="item in cmovies">{{item}}</li>
+        </ul>
+        <p>{{cmovies}}</p>
+    </div>
+</template>
+
+
+<script src="../js/vue.js"></script>
+<script>
+    //父传子:props
+    //子组件
+    const cpn = {
+        template: '#cpn',
+        // props: ['cmovies', 'cmessage'],
+        // props的数组里面放要引用的变量名,props可以传数组也可以传对象
+        props: {
+            // 1.类型限制
+            // cmovies: Array,
+            // //props写对象的形式还可以顺便验证你这个cmovies是不是Array(数组),要求传过来的值必须是一个Array类型,可以验证别的例如:String/Number/Boolean/Object(对象)/Data(函数)/Function(方法)/Symbol(符号)
+            // cmessage: String,
+
+            // 2.提供一些默认值,以及必传值
+            cmessage: {
+                type: String,
+                // 这里的type作用就是要求类型一定是个String
+                default: 'aaaaaaaa',
+                required: true
+                // required的作用就是要求别人在用cpn的时候必须传cmessage这一个变量，如果不传这个属性他就报错
+            },
+            // 类型是对象或者数组时，默认值必须是一个函数
+            cmovies: {
+                type: Array,
+                dafault() {
+                    return []
+                }//vue2.5.17以下
+            }
+        },
+        // //自定义验证函数
+        // propF:{
+        //     validator:function (value) {
+        //这个值必须匹配下列字符串中的一个
+        //         return ['success','warning','danger'].indexOf(value) !== -1
+        //     }
+        // }
+        data() {
+            return {}
+        },
+    }
+
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: '你好啊',
+            movies: ['海王', '海贼王', '海尔兄弟']
+        },
+        components: {
+            cpn
+        }
+    })
+
+
+</script>
+</body>
+</html>
